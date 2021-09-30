@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true
+  }
+}

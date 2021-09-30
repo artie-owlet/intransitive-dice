@@ -1,0 +1,77 @@
+{
+  "env": {
+    "es2021": true,
+    "node": true,
+    "commonjs": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./test/tsconfig.json"
+    ]
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "indent": [
+      "error",
+      4,
+      {
+        "FunctionDeclaration": {
+          "parameters": 1
+        },
+        "FunctionExpression": {
+          "parameters": 1
+        },
+        "SwitchCase": 1
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": [
+      "error",
+      {
+        "allowArgumentsExplicitlyTypedAsAny": true
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      "off"
+    ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_[0-9]*$"
+      }
+    ],
+    "@typescript-eslint/semi": [
+      "error"
+    ]
+  }
+}
