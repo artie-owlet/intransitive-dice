@@ -29,13 +29,19 @@ export function winsToPermut(wins: number[][]): number[] {
     wins = [...wins];
     const permutDice = new Array(wins.length).fill(0)
         .map((_, id) => new Array<number>(wins[0].length).fill(id))
-        .reduce((a, d) => a.concat(d), []);
+        .reduce((a, d) => {
+            a.push(...d);
+            return a;
+        }, []);
     const permutSides = new Array(wins.length).fill(0)
         .map((_) => {
             return new Array(wins[0].length).fill(0)
                 .map((_, id) => id);
         })
-        .reduce((a, p) => a.concat(p), []);
+        .reduce((a, s) => {
+            a.push(...s);
+            return a;
+        }, []);
 
     let prevPermutDice: number[];
     do {
