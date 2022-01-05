@@ -15,6 +15,15 @@ describe('generate()', () => {
         expect(generate(3, 5, 16)).equal(null);
     });
 
+    it('4d5w16', () => {
+        expect(generate(4, 5, 16)).deep.equal([
+            [ 1, 11, 12, 13, 15 ],
+            [ 2, 3, 14, 16, 17 ],
+            [ 4, 5, 7, 18, 19 ],
+            [ 6, 8, 9, 10, 20 ]
+        ]);
+    });
+
     it('3d6w19', () => {
         expect(generate(3, 6, 19)).deep.equal([
             [ 1, 2, 11, 13, 14, 16 ],

@@ -14,14 +14,16 @@ export function generate(diceNum: number, sidesNum: number, win: number): number
     }
 
     const loss = sidesNum * sidesNum - win;
-    const maxWidthAB = Math.floor(loss / sidesNum);
-    for (let n = 0; n <= Math.floor(maxWidthAB / 2); ++n) {
-        const tables: number[][] = [];
+    for (let n = 0; ; ++n) {
         let width = Math.floor((loss - n * sidesNum) / (sidesNum - n));
+        if (width < n) {
+            break;
+        }
         let height = sidesNum - width;
         const lastTable = new Array<number>(width).fill(0)
             .concat([sidesNum - ((loss - n * sidesNum) % (sidesNum - n)) - n])
             .concat(new Array<number>(sidesNum - width - 1).fill(sidesNum - n));
+        const tables: number[][] = [];
         while (tables.length < diceNum - 1) {
             width = Math.floor(loss / height);
             if (width < sidesNum - n) {
