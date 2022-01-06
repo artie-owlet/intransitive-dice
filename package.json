@@ -1,6 +1,6 @@
 {
   "name": "@artie-owlet/intransitive-dice",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Tool for generating intransitive dice",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
