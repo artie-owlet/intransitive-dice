@@ -8,9 +8,10 @@ function swap(permutDice: number[], permutSides: number[], dieWins: number[], lD
         const beforeLessId = dieWins[sideId] < dieWins.length ?
             findDieSide(permutDice, permutSides, lDieId, w) : permutDice.length;
         const afterLessId = dieWins[sideId] > 0 ? findDieSide(permutDice, permutSides, lDieId, w - 1) : -1;
-        const afterSameId = sideId > 0 ? findDieSide(permutDice, permutSides, gDieId, sideId - 1) : -1;
 
+        /* istanbul ignore else */
         if (rmId > beforeLessId) {
+            const afterSameId = sideId > 0 ? findDieSide(permutDice, permutSides, gDieId, sideId - 1) : -1;
             const insId = Math.max(afterLessId, afterSameId) + 1;
 
             const tmpDieId = permutDice[rmId];
@@ -22,6 +23,7 @@ function swap(permutDice: number[], permutSides: number[], dieWins: number[], lD
             permutDice[insId] = tmpDieId;
             permutSides[insId] = tmpSideId;
         } else if (rmId < afterLessId) {
+            const afterSameId = sideId > 0 ? findDieSide(permutDice, permutSides, gDieId, sideId - 1) : -1;
             const insId = Math.max(afterLessId, afterSameId);
 
             const tmpDieId = permutDice[rmId];
