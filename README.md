@@ -15,17 +15,17 @@ npm install @artie-owlet/intransitive-dice
 
 ## Usage
 
-```javascript
+```ts
 import { generate } from '@artie-owlet/intransitive-dice';
 
 const itd = generate(4, 6, 24);
 console.log(itd);
 /* will output:
 [
+  [ 10, 11, 12, 13, 14, 15 ],
   [ 1, 2, 16, 17, 18, 19 ],
   [ 3, 4, 5, 20, 21, 22 ],
-  [ 6, 7, 8, 9, 23, 24 ],
-  [ 10, 11, 12, 13, 14, 15 ]
+  [ 6, 7, 8, 9, 23, 24 ]
 ]
 */
 ```
