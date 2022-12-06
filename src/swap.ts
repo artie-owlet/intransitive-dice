@@ -2,12 +2,12 @@ function findDieSide(permutDice: number[], permutSides: number[], dieId: number,
     return permutDice.findIndex((n, id) => n === dieId && permutSides[id] === sideId);
 }
 
-function swap(permutDice: number[], permutSides: number[], dieWins: number[], lDieId: number, gDieId: number): void {
+export function swap(permutDice: number[], permutSides: number[], dieWins: number[], lDieId: number, gDieId: number
+): void {
     dieWins.forEach((w, sideId) => {
         const rmId = findDieSide(permutDice, permutSides, gDieId, sideId);
-        const beforeLessId = dieWins[sideId] < dieWins.length ?
-            findDieSide(permutDice, permutSides, lDieId, w) : permutDice.length;
-        const afterLessId = dieWins[sideId] > 0 ? findDieSide(permutDice, permutSides, lDieId, w - 1) : -1;
+        const beforeLessId = w < dieWins.length ? findDieSide(permutDice, permutSides, lDieId, w) : permutDice.length;
+        const afterLessId = w > 0 ? findDieSide(permutDice, permutSides, lDieId, w - 1) : -1;
 
         /* istanbul ignore else */
         if (rmId > beforeLessId) {
@@ -36,31 +36,4 @@ function swap(permutDice: number[], permutSides: number[], dieWins: number[], lD
             permutSides[insId] = tmpSideId;
         }
     });
-}
-
-export function winsToPermut(wins: number[][]): number[] {
-    wins = [...wins];
-    const permutDice = new Array(wins.length).fill(0)
-        .map((_, id) => new Array<number>(wins[0].length).fill(id))
-        .reduce((a, d) => {
-            a.push(...d);
-            return a;
-        }, []);
-    const permutSides = new Array(wins.length).fill(0)
-        .map((_) => {
-            return new Array(wins[0].length).fill(0)
-                .map((_, id) => id);
-        })
-        .reduce((a, s) => {
-            a.push(...s);
-            return a;
-        }, []);
-
-    let prevPermutDice: number[];
-    do {
-        prevPermutDice = [...permutDice];
-        wins.forEach((dieWins, dieId) => swap(permutDice, permutSides, dieWins, dieId, (dieId + 1) % wins.length));
-    } while (permutDice.findIndex((n, id) => prevPermutDice[id] !== n) >= 0);
-
-    return permutDice;
 }

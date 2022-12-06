@@ -1,13 +1,14 @@
 import { expect } from 'chai';
 
 import { generate } from '../src/index';
+import { isITD } from '../src/is-itd';
 
 describe('generate()', () => {
     it('3d3w5', () => {
         expect(generate(3, 3, 5)).deep.equal([
+            [3, 5, 7],
             [1, 6, 8],
             [2, 4, 9],
-            [3, 5, 7],
         ]);
     });
 
@@ -16,20 +17,23 @@ describe('generate()', () => {
     });
 
     it('4d5w16', () => {
-        expect(generate(4, 5, 16)).deep.equal([
-            [ 1, 11, 12, 13, 15 ],
-            [ 2, 3, 14, 16, 17 ],
-            [ 4, 5, 7, 18, 19 ],
-            [ 6, 8, 9, 10, 20 ]
-        ]);
+        const itd = generate(4, 5, 16);
+        if (!itd) {
+            expect.fail();
+        }
+        expect(isITD(itd)).eq(true);
+    });
+
+    it('5d5w17', () => {
+        expect(generate(5, 5, 17)).equal(null);
     });
 
     it('3d6w19', () => {
-        expect(generate(3, 6, 19)).deep.equal([
-            [ 1, 2, 11, 13, 14, 16 ],
-            [ 4, 6, 7, 8, 15, 17 ],
-            [ 3, 5, 9, 10, 12, 18 ],
-        ]);
+        const itd = generate(3, 6, 19);
+        if (!itd) {
+            expect.fail();
+        }
+        expect(isITD(itd)).eq(true);
     });
 
     it('check args', () => {
